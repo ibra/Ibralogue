@@ -1,4 +1,5 @@
 ﻿using Ibralogue.Parser;
+using Ibralogue.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,10 +17,10 @@ namespace Ibralogue
         public static readonly Dictionary<string, string> GlobalVariables = new Dictionary<string, string>();
     }
 
-    public abstract class DialogueManagerBase<ChoiceButtonT> : MonoBehaviour where ChoiceButtonT : Component
+    public abstract class DialogueManagerBase : MonoBehaviour
     {
-        public UnityEvent OnConversationStart { get; set; } = new UnityEvent();
-        public UnityEvent OnConversationEnd { get; set; } = new UnityEvent();
+        public UnityEvent OnConversationStart = new UnityEvent();
+        public UnityEvent OnConversationEnd = new UnityEvent();
 
         public List<Conversation> ParsedConversations { get; protected set; }
         protected Conversation _currentConversation;
@@ -36,8 +37,8 @@ namespace Ibralogue
         [SerializeField] protected Image speakerPortrait;
 
         [Header("Choice UI")][SerializeField] protected Transform choiceButtonHolder;
-        [SerializeField] protected ChoiceButtonT choiceButton;
-        protected List<ChoiceButtonHandle> _choiceButtonInstances = new List<ChoiceButtonHandle>();
+        [SerializeField] protected GameObject choiceButton;
+        protected List<ChoiceButton> _choiceButtonInstances = new List<ChoiceButton>();
 
         [Header("Function Invocations")]
         [SerializeField]
@@ -211,7 +212,11 @@ namespace Ibralogue
             if (_currentConversation.Choices == null || !_currentConversation.Choices.Any()) return;
             foreach (Choice choice in _currentConversation.Choices.Keys)
             {
-                ChoiceButtonT choiceButtonInstance = CreateChoiceButton();
+                ChoiceButton choiceButtonInstance = Instantiate(choiceButton, choiceButtonHolder).GetComponent<ChoiceButton>();
+                if (choiceButtonInstance == null)
+                {
+                    DialogueLogger.LogError(2, "ChoiceButton is null. Make sure you have the ChoiceButton component added to your Button object!");
+                }
 
                 UnityAction onClickAction = null;
                 int conversationIndex = -1;
@@ -233,21 +238,12 @@ namespace Ibralogue
                         break;
                 }
 
-
-                ChoiceButtonHandle handle = new ChoiceButtonHandle(
-                    choiceButtonInstance,
-                    onClickAction
-                );
-
-                _choiceButtonInstances.Add(handle);
-                PrepareChoiceButton(handle, choice);
-
                 choiceButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text = choice.ChoiceName;
-                handle.ClickEvent.AddListener(handle.ClickCallback);
+                choiceButtonInstance.OnChoiceClick.AddListener(onClickAction);
+
+                _choiceButtonInstances.Add(choiceButtonInstance);
             }
         }
-
-        protected abstract void PrepareChoiceButton(ChoiceButtonHandle handle, Choice choice);
 
         /// <summary>
         /// Gets all methods for the current assembly, other specified assemblies, or all assemblies, and checks them against the
@@ -303,44 +299,13 @@ namespace Ibralogue
             if (_choiceButtonInstances == null)
                 return;
 
-            foreach (ChoiceButtonHandle buttonHandle in _choiceButtonInstances)
+            foreach (ChoiceButton choiceButton in _choiceButtonInstances)
             {
-                ClearChoiceButton(buttonHandle);
-                RemoveChoiceButton(buttonHandle);
+                choiceButton.OnChoiceClick.RemoveAllListeners();
+                Destroy(choiceButton.gameObject);
             }
 
             _choiceButtonInstances.Clear();
-        }
-
-        protected virtual ChoiceButtonT CreateChoiceButton()
-        {
-            return Instantiate(choiceButton, choiceButtonHolder);
-        }
-
-        protected virtual void ClearChoiceButton(ChoiceButtonHandle buttonHandle)
-        {
-            buttonHandle.ClickEvent.RemoveListener(buttonHandle.ClickCallback);
-        }
-
-        protected virtual void RemoveChoiceButton(ChoiceButtonHandle buttonHandle)
-        {
-            Destroy(buttonHandle.ChoiceButton.gameObject);
-        }
-
-        /// <summary>
-        /// Represent a single spawned choice button, contains general information about said button
-        /// </summary>
-        protected class ChoiceButtonHandle
-        {
-            public ChoiceButtonHandle(ChoiceButtonT choiceButton, UnityAction clickCallback)
-            {
-                ChoiceButton = choiceButton;
-                ClickCallback = clickCallback;
-            }
-
-            public UnityEvent ClickEvent { get; set; }
-            public ChoiceButtonT ChoiceButton { get; private set; }
-            public UnityAction ClickCallback { get; private set; }
         }
     }
 }
