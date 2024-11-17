@@ -1,15 +1,6 @@
-using Ibralogue.Parser;
-using TMPro;
-using UnityEngine.UI;
-
 namespace Ibralogue
 {
-    public class SimpleDialogueManager : DialogueManagerBase<Button>
+    public class SimpleDialogueManager : DialogueManagerBase
     {
-        protected override void PrepareChoiceButton(ChoiceButtonHandle handle, Choice choice)
-        {
-            handle.ChoiceButton.GetComponentInChildren<TextMeshProUGUI>().text = choice.ChoiceName;
-            handle.ClickEvent = handle.ChoiceButton.onClick;
-        }
     }
 }
