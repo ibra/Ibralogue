@@ -21,8 +21,11 @@ namespace Ibralogue
     {
         protected ManagerPlugin[] managerPlugins;
 
-        public UnityEvent OnConversationStart = new UnityEvent();
-        public UnityEvent OnConversationEnd = new UnityEvent();
+        public UnityEvent PersistentOnConversationStart = new UnityEvent();
+        public UnityEvent PersistentOnConversationEnd = new UnityEvent();
+
+        [HideInInspector] public UnityEvent OnConversationStart = new UnityEvent();
+        [HideInInspector] public UnityEvent OnConversationEnd = new UnityEvent();
 
         public List<Conversation> ParsedConversations { get; protected set; }
         protected Conversation _currentConversation;
@@ -80,6 +83,10 @@ namespace Ibralogue
         {
             StopConversation();
             _currentConversation = conversation;
+
+            OnConversationStart.AddListener(PersistentOnConversationStart.Invoke);
+            OnConversationEnd.AddListener(PersistentOnConversationEnd.Invoke);
+
             OnConversationStart.Invoke();
             StartCoroutine(DisplayDialogue());
         }
@@ -94,7 +101,11 @@ namespace Ibralogue
 
             _lineIndex = 0;
             _currentConversation = null;
+
             OnConversationEnd.Invoke();
+
+            OnConversationStart.RemoveAllListeners();
+            OnConversationEnd.RemoveAllListeners();
         }
 
         /// <summary>

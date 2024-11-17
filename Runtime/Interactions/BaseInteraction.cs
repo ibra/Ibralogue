@@ -22,8 +22,8 @@ namespace Ibralogue.Interactions
 
         private void AttachEvents()
         {
-            dialogueManager.OnConversationStart = OnConversationStart;
-            dialogueManager.OnConversationEnd = OnConversationEnd;
+            dialogueManager.OnConversationStart.AddListener(OnConversationStart.Invoke);
+            dialogueManager.OnConversationEnd.AddListener(OnConversationEnd.Invoke);
         }
     }
 }
