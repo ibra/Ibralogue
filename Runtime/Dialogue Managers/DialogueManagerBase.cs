@@ -50,7 +50,6 @@ namespace Ibralogue
 
         [SerializeField] private List<string> includedAssemblies = new List<string>();
 
-
         /// <summary>
         /// Starts a dialogue by parsing all the text in a file, clearing the dialogue box and starting the <see cref="DisplayDialogue"/> function.
         /// </summary>
