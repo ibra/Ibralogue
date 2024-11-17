@@ -19,8 +19,8 @@ namespace Ibralogue
 
     public abstract class DialogueManagerBase : MonoBehaviour
     {
-        public UnityEvent OnConversationStart { get; set; } = new UnityEvent();
-        public UnityEvent OnConversationEnd { get; set; } = new UnityEvent();
+        public UnityEvent OnConversationStart = new UnityEvent();
+        public UnityEvent OnConversationEnd = new UnityEvent();
 
         public List<Conversation> ParsedConversations { get; protected set; }
         protected Conversation _currentConversation;
