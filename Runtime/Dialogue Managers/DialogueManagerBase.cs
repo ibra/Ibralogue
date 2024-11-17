@@ -37,7 +37,7 @@ namespace Ibralogue
         [SerializeField] protected Image speakerPortrait;
 
         [Header("Choice UI")][SerializeField] protected Transform choiceButtonHolder;
-        [SerializeField] protected ChoiceButton choiceButton;
+        [SerializeField] protected GameObject choiceButton;
         protected List<ChoiceButton> _choiceButtonInstances = new List<ChoiceButton>();
 
         [Header("Function Invocations")]
@@ -212,7 +212,11 @@ namespace Ibralogue
             if (_currentConversation.Choices == null || !_currentConversation.Choices.Any()) return;
             foreach (Choice choice in _currentConversation.Choices.Keys)
             {
-                ChoiceButton choiceButtonInstance = Instantiate(choiceButton, choiceButtonHolder);
+                ChoiceButton choiceButtonInstance = Instantiate(choiceButton, choiceButtonHolder).GetComponent<ChoiceButton>();
+                if (choiceButtonInstance == null)
+                {
+                    DialogueLogger.LogError(2, "ChoiceButton is null. Make sure you have the ChoiceButton component added to your Button object!");
+                }
 
                 UnityAction onClickAction = null;
                 int conversationIndex = -1;
@@ -234,16 +238,10 @@ namespace Ibralogue
                         break;
                 }
 
-
-                //ChoiceButtonHandle handle = new ChoiceButtonHandle(
-                //    choiceButtonInstance,
-                //    onClickAction
-                //);
+                choiceButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text = choice.ChoiceName;
+                choiceButtonInstance.OnChoiceClick.AddListener(onClickAction);
 
                 _choiceButtonInstances.Add(choiceButtonInstance);
-
-                choiceButtonInstance.GetComponentInChildren<TextMeshProUGUI>().text = choice.ChoiceName;
-                choiceButton.ClickEvent.AddListener(choiceButton.ClickCallback);
             }
         }
 
@@ -303,7 +301,7 @@ namespace Ibralogue
 
             foreach (ChoiceButton choiceButton in _choiceButtonInstances)
             {
-                //choiceButton.ClickEvent.RemoveListener(choiceButton.ClickCallback);
+                choiceButton.OnChoiceClick.RemoveAllListeners();
                 Destroy(choiceButton.gameObject);
             }
 

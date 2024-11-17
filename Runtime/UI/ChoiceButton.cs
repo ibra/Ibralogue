@@ -8,15 +8,15 @@ namespace Ibralogue.UI
     {
         private Button _button;
 
-        public string Name { get; set; }
-        public string LeadingConversation { get; set; }
+        public UnityEvent OnChoiceClick { get; set; } = new UnityEvent();
 
-        public UnityEvent ClickEvent { get; set; }
-        public UnityAction ClickCallback { get; set; }
-
-        private void Start()
+        private void Awake()
         {
             _button = GetComponent<Button>();
+            _button.onClick.AddListener(OnChoiceClick.Invoke);
+
+            // TODO: In the future, all choice button handling (including setting values)
+            // will be done through this class.
         }
     }
 }
