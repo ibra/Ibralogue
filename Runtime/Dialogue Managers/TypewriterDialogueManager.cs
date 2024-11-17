@@ -26,7 +26,11 @@ namespace Ibralogue
 
             nameText.text = _currentConversation.Lines[_lineIndex].Speaker;
             sentenceText.text = _currentConversation.Lines[_lineIndex].LineContent.Text;
-            DisplaySpeakerImage();
+
+            foreach(ManagerPlugin plugin in managerPlugins)
+            {
+                plugin.Display(_currentConversation,_lineIndex);
+            }
 
             int index = 0;
 

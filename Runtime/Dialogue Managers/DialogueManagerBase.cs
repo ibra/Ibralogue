@@ -8,7 +8,6 @@ using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace Ibralogue
 {
@@ -19,6 +18,8 @@ namespace Ibralogue
 
     public abstract class DialogueManagerBase : MonoBehaviour
     {
+        protected ManagerPlugin[] managerPlugins;
+
         public UnityEvent OnConversationStart = new UnityEvent();
         public UnityEvent OnConversationEnd = new UnityEvent();
 
@@ -34,7 +35,6 @@ namespace Ibralogue
 
         [SerializeField] protected TextMeshProUGUI nameText;
         [SerializeField] protected TextMeshProUGUI sentenceText;
-        [SerializeField] protected Image speakerPortrait;
 
         [Header("Choice UI")][SerializeField] protected Transform choiceButtonHolder;
         [SerializeField] protected GameObject choiceButton;
@@ -63,6 +63,7 @@ namespace Ibralogue
                 throw new ArgumentOutOfRangeException(nameof(startIndex),
                     "Expected value is between 0 and conversations count (exclusive)");
 
+            managerPlugins = GetComponents<ManagerPlugin>();
             StartConversation(ParsedConversations[startIndex]);
         }
 
@@ -130,7 +131,12 @@ namespace Ibralogue
 
             nameText.text = _currentConversation.Lines[_lineIndex].Speaker;
             sentenceText.text = _currentConversation.Lines[_lineIndex].LineContent.Text;
-            DisplaySpeakerImage();
+
+            foreach(ManagerPlugin plugin in managerPlugins)
+            {
+                plugin.Display(_currentConversation,_lineIndex);
+            }
+
             InvokeFunctions(_currentConversation.Lines[_lineIndex].LineContent.Invocations);
 
             _linePlaying = false;
@@ -275,17 +281,6 @@ namespace Ibralogue
         }
 
         /// <summary>
-        /// Sets the speaker image and makes the Image transparent if there is no speaker image.
-        /// </summary>
-        protected void DisplaySpeakerImage()
-        {
-            speakerPortrait.color = _currentConversation.Lines[_lineIndex].SpeakerImage == null
-                ? new Color(0, 0, 0, 0)
-                : new Color(255, 255, 255, 255);
-            speakerPortrait.sprite = _currentConversation.Lines[_lineIndex].SpeakerImage;
-        }
-
-        /// <summary>
         /// Clears all text and Images in the dialogue box.
         /// </summary>
         protected virtual void ClearDialogueBox()
@@ -294,7 +289,15 @@ namespace Ibralogue
             nameText.text = string.Empty;
             sentenceText.text = string.Empty;
 
-            speakerPortrait.color = new Color(0, 0, 0, 0);
+            foreach (ManagerPlugin plugin in managerPlugins)
+            {
+                plugin.Clear(_currentConversation, _lineIndex);
+            }
+
+            if (GetComponent<PortraitImagePlugin>() != null)
+            {
+
+            }
 
             if (_choiceButtonInstances == null)
                 return;
