@@ -7,7 +7,7 @@ namespace Ibralogue.Examples
     public static class ExampleFunctionInvocations
     {
         [DialogueFunction]
-        public static void TriggerFunction(DialogueManagerBase<Button> dialogueManager)
+        public static void TriggerFunction(DialogueManagerBase dialogueManager)
         {
             Debug.Log($"There are {dialogueManager.ParsedConversations.Count} conversations in this file.");
             Debug.Log("Function Trigger");

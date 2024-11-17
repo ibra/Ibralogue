@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -147,6 +146,7 @@ GameObject:
   - component: {fileID: 6826497581176721297}
   - component: {fileID: 6826497581176721296}
   - component: {fileID: 6826497581176721299}
+  - component: {fileID: 2979541376000638199}
   m_Layer: 5
   m_Name: ChoiceButton
   m_TagString: Untagged
@@ -197,7 +197,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.9481132, g: 1, b: 0.97681653, a: 1}
   m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -226,7 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
-    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -271,3 +269,15 @@ MonoBehaviour:
   m_EffectColor: {r: 0.13333334, g: 0.11764707, b: 0.10588236, a: 1}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!114 &2979541376000638199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826497581176721293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 252ea0cff8336ef42b10df9a76a6f398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

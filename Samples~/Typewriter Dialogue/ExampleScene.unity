@@ -430,7 +430,7 @@ MonoBehaviour:
   dialogueManager: {fileID: 1515395011}
   InteractionDialogues:
   - {fileID: 3232733424486734734, guid: 2922fc19c5b85454b90752116b3d59d6, type: 3}
-  - {fileID: 3232733424486734734, guid: 1250cfa8764ba104bb8eb4e9685ae4a5, type: 3}
+  - {fileID: 3232733424486734734, guid: 99aab843f37c9fd458801a47c2b908c2, type: 3}
   OnConversationStart:
     m_PersistentCalls:
       m_Calls:
@@ -962,12 +962,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a1e52c7b65355c4297ee7135cad1637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PersistentOnConversationStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 371977643}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  PersistentOnConversationEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 371977643}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnConversationStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnConversationEnd:
+    m_PersistentCalls:
+      m_Calls: []
   scrollSpeed: 25
   nameText: {fileID: 1681295514}
   sentenceText: {fileID: 575064700}
-  speakerPortrait: {fileID: 562461649}
   choiceButtonHolder: {fileID: 26815127}
-  choiceButton: {fileID: 6826497581176721296, guid: b6c33d346da503441b5a598f8ac974a2,
+  choiceButton: {fileID: 6826497581176721293, guid: b6c33d346da503441b5a598f8ac974a2,
     type: 3}
   searchAllAssemblies: 0
   includedAssemblies:
