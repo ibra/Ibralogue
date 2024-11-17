@@ -1,4 +1,5 @@
 ﻿using Ibralogue.Parser;
+using Ibralogue.Plugins;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,11 @@ namespace Ibralogue
 
             nameText.text = _currentConversation.Lines[_lineIndex].Speaker;
             sentenceText.text = _currentConversation.Lines[_lineIndex].LineContent.Text;
-            DisplaySpeakerImage();
+
+            foreach(ManagerPlugin plugin in managerPlugins)
+            {
+                plugin.Display(_currentConversation,_lineIndex);
+            }
 
             int index = 0;
 

@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Ibralogue.UI
 {
+    /// <summary>
+    /// Represents a UI choice button that triggers an invokable event when clicked.
+    /// </summary>
     public class ChoiceButton : MonoBehaviour
     {
         private Button _button;

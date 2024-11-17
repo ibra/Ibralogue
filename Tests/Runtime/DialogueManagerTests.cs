@@ -34,7 +34,6 @@ namespace Ibralogue.Tests
             manager.ScrollSpeed = 30;
             manager.NameText = nameText;
             manager.SentenceText = sentenceText;
-            manager.SpeakerPortrait = speakerPortrait;
             manager.ChoiceButtonHolder = choiceButtonHolder;
             manager.ChoiceButton = choiceButton;
 
