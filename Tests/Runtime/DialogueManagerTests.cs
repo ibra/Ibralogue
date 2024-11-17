@@ -1,4 +1,5 @@
 using Ibralogue.Parser;
+using Ibralogue.UI;
 using NUnit.Framework;
 using System.Collections;
 using TMPro;
@@ -15,7 +16,7 @@ namespace Ibralogue.Tests
         protected TextMeshProUGUI sentenceText;
         protected Image speakerPortrait;
         protected Transform choiceButtonHolder;
-        protected TestDialogueChoice choiceButton;
+        protected ChoiceButton choiceButton;
 
         [SetUp]
         public void BaseSetup()
@@ -28,12 +29,11 @@ namespace Ibralogue.Tests
             sentenceText = new GameObject("Sentence Text").AddComponent<TextMeshProUGUI>();
             speakerPortrait = new GameObject("Speaker Portrait").AddComponent<Image>();
             choiceButtonHolder = new GameObject("Choice Holder").transform;
-            choiceButton = new GameObject("Choice Button").AddComponent<TestDialogueChoice>();
+            choiceButton = new GameObject("Choice Button").AddComponent<ChoiceButton>();
 
             manager.ScrollSpeed = 30;
             manager.NameText = nameText;
             manager.SentenceText = sentenceText;
-            manager.SpeakerPortrait = speakerPortrait;
             manager.ChoiceButtonHolder = choiceButtonHolder;
             manager.ChoiceButton = choiceButton;
 

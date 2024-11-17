@@ -1,4 +1,4 @@
-﻿namespace Ibralogue
+﻿namespace Ibralogue.Parser
 {
     public interface IMetadata
     {

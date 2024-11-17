@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Ibralogue.Parser;
 using UnityEngine;
 
-namespace Ibralogue
+namespace Ibralogue.Parser
 {
     public static class DialogueParser
 	{

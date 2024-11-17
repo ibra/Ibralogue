@@ -12,8 +12,8 @@ namespace Ibralogue.Interactions
         [SerializeField] protected SimpleDialogueManager dialogueManager;
         [SerializeField] protected DialogueAsset[] InteractionDialogues;
 
-        [SerializeField] private UnityEvent OnConversationStart;
-        [SerializeField] private UnityEvent OnConversationEnd;
+        [SerializeField] private UnityEvent OnConversationStart = new UnityEvent();
+        [SerializeField] private UnityEvent OnConversationEnd = new UnityEvent();
 
         public virtual void StartDialogue()
         {
@@ -22,8 +22,8 @@ namespace Ibralogue.Interactions
 
         private void AttachEvents()
         {
-            dialogueManager.OnConversationStart = OnConversationStart;
-            dialogueManager.OnConversationEnd = OnConversationEnd;
+            dialogueManager.OnConversationStart.AddListener(OnConversationStart.Invoke);
+            dialogueManager.OnConversationEnd.AddListener(OnConversationEnd.Invoke);
         }
     }
 }

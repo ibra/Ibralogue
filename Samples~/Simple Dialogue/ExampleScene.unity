@@ -204,20 +204,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 465086536}
         m_MethodName: StartDialogue
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 465086531}
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -276,57 +265,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueManager: {fileID: 572109234}
-  InteractionDialogues: []
+  InteractionDialogues:
+  - {fileID: 3232733424486734734, guid: f910a7d5b681d91449e33c59a20888ad, type: 3}
+  - {fileID: 3232733424486734734, guid: 1250cfa8764ba104bb8eb4e9685ae4a5, type: 3}
   OnConversationStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 465086531}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1667769485}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   OnConversationEnd:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 465086531}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1667769485}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _loop: 1
 --- !u!1 &569316724
 GameObject:
@@ -518,12 +465,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22226255fdcc292469d80a60639d41e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PersistentOnConversationStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 465086531}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  PersistentOnConversationEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 465086531}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnConversationStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnConversationEnd:
+    m_PersistentCalls:
+      m_Calls: []
   scrollSpeed: 25
   nameText: {fileID: 1530030809}
   sentenceText: {fileID: 569316726}
-  speakerPortrait: {fileID: 624381158}
   choiceButtonHolder: {fileID: 1772521544}
-  choiceButton: {fileID: 6052288707898456430, guid: fcf20762e0dcf3e43ab5735e387a239d,
+  choiceButton: {fileID: 6052288707898456428, guid: fcf20762e0dcf3e43ab5735e387a239d,
     type: 3}
   searchAllAssemblies: 0
   includedAssemblies: []
@@ -1208,7 +1188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1667769486
 RectTransform:
   m_ObjectHideFlags: 0
