@@ -1,29 +1,31 @@
-﻿using Ibralogue;
-using Ibralogue.Parser;
+﻿using Ibralogue.Parser;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(SimpleDialogueManager))]
-public class PortraitImagePlugin : ManagerPlugin
+namespace Ibralogue.Plugins
 {
-    [SerializeField] protected Image speakerPortrait;
-
-    /// <summary>
-    /// Sets the speaker image and makes the Image transparent if there is no speaker image.
-    /// </summary>
-    public override void Display(Conversation currentConversation, int lineIndex)
+    [RequireComponent(typeof(SimpleDialogueManager))]
+    public class PortraitImagePlugin : ManagerPlugin
     {
-        speakerPortrait.color = currentConversation.Lines[lineIndex].SpeakerImage == null
-            ? new Color(0, 0, 0, 0)
-            : new Color(255, 255, 255, 255);
-        speakerPortrait.sprite = currentConversation.Lines[lineIndex].SpeakerImage;
-    }
+        [SerializeField] protected Image speakerPortrait;
 
-    /// <summary>
-    /// Sets the speaker image and makes the Image transparent if there is no speaker image.
-    /// </summary>
-    public override void Clear(Conversation currentConversation, int lineIndex)
-    {
-        speakerPortrait.color = new Color(0, 0, 0, 0);
+        /// <summary>
+        /// Sets the speaker image and makes the Image transparent if there is no speaker image.
+        /// </summary>
+        public override void Display(Conversation currentConversation, int lineIndex)
+        {
+            speakerPortrait.color = currentConversation.Lines[lineIndex].SpeakerImage == null
+                ? new Color(0, 0, 0, 0)
+                : new Color(255, 255, 255, 255);
+            speakerPortrait.sprite = currentConversation.Lines[lineIndex].SpeakerImage;
+        }
+
+        /// <summary>
+        /// Sets the speaker image and makes the Image transparent if there is no speaker image.
+        /// </summary>
+        public override void Clear(Conversation currentConversation, int lineIndex)
+        {
+            speakerPortrait.color = new Color(0, 0, 0, 0);
+        }
     }
 }

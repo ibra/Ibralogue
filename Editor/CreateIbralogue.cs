@@ -49,7 +49,7 @@ namespace Ibralogue.Editor
         }
 
         /// <summary>
-        /// Locates the package's root path when imported via Git URL.
+        /// Locates the Ibralogue package's root path when imported via Git URL.
         /// </summary>
         private static string GetPackagePath()
         {

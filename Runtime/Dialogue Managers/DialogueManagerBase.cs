@@ -1,4 +1,5 @@
 ﻿using Ibralogue.Parser;
+using Ibralogue.Plugins;
 using Ibralogue.UI;
 using System;
 using System.Collections;
